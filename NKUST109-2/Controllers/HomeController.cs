@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using KHLightTrail;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using NKUST109_2.Models;
 using System;
@@ -20,7 +21,8 @@ namespace NKUST109_2.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            List<VolumeData> volumeDatas = Repository.GetAllVolumes().Result;
+            return View(volumeDatas);
         }
 
         public IActionResult Privacy()
