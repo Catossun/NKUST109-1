@@ -14,7 +14,7 @@ namespace LightTrailVolumeAPITest
             string dataUrl = "https://data.kcg.gov.tw/dataset/6f29f6f4-2549-4473-aa90-bf60d10895dc/resource/30dfc2cf-17b5-4a40-8bb7-c511ea166bd3/download/lightrailtraffic.json";
             Console.WriteLine("資料來源：{0}\n", dataUrl);
 
-            List<VolumeData> dataList = Repository.GetAllVolumes().Result;
+            List<VolumeData> dataList = VolumeDataset.GetAllVolumes().Result;
             Console.WriteLine(
                 "統計範圍：{0}/{1:D2} ~ {2}/{3:D2}",
                 dataList[0].Year,
