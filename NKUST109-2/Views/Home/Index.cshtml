@@ -1,27 +1,5 @@
-﻿@model IEnumerable<KHLightTrail.VolumeData>
-@{ViewData["Title"] = "Home";}
+﻿@{ViewData["Title"] = "Home";}
 
 <div class="text-center">
-    <h1 class="display-4">
-        高雄輕軌月均運量統計
-    </h1>
-    <hr />
-
-    <table style="width:100%" border="1">
-        <thead>
-            <tr>
-                <td>Year</td>
-                <td>Month</td>
-                <td>Total Volume</td>
-            </tr>
-        </thead>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.Year</td>
-                <td>@item.Month</td>
-                <td>@item.TotalVolume</td>
-            </tr>
-        }
-    </table>
+    <h1>hello, world</h1>
 </div>
