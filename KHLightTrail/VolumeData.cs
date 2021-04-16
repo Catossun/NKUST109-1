@@ -1,9 +1,13 @@
-﻿using System.Text.Json.Serialization;
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace KHLightTrail
 {
     public class VolumeData
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int Id { get; set; }
+
         [JsonPropertyName("年")]
         public int Year { get; set; }
 
