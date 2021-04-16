@@ -1,0 +1,89 @@
+﻿@model KHLightTrail.VolumeData
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>VolumeData</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Month" class="control-label"></label>
+                <input asp-for="Month" class="form-control" />
+                <span asp-validation-for="Month" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TotalVolume" class="control-label"></label>
+                <input asp-for="TotalVolume" class="form-control" />
+                <span asp-validation-for="TotalVolume" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AverangeDailyVolume" class="control-label"></label>
+                <input asp-for="AverangeDailyVolume" class="form-control" />
+                <span asp-validation-for="AverangeDailyVolume" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AvgHolidayVolume" class="control-label"></label>
+                <input asp-for="AvgHolidayVolume" class="form-control" />
+                <span asp-validation-for="AvgHolidayVolume" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AvgBuyTicketWithCardOnPlatform" class="control-label"></label>
+                <input asp-for="AvgBuyTicketWithCardOnPlatform" class="form-control" />
+                <span asp-validation-for="AvgBuyTicketWithCardOnPlatform" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AvgBuyTicketWithCardOnTrain" class="control-label"></label>
+                <input asp-for="AvgBuyTicketWithCardOnTrain" class="form-control" />
+                <span asp-validation-for="AvgBuyTicketWithCardOnTrain" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AvgBuyTicketFromTicketMachine" class="control-label"></label>
+                <input asp-for="AvgBuyTicketFromTicketMachine" class="form-control" />
+                <span asp-validation-for="AvgBuyTicketFromTicketMachine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AvgRebuyTicket" class="control-label"></label>
+                <input asp-for="AvgRebuyTicket" class="form-control" />
+                <span asp-validation-for="AvgRebuyTicket" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AvgBuyGroupTicket" class="control-label"></label>
+                <input asp-for="AvgBuyGroupTicket" class="form-control" />
+                <span asp-validation-for="AvgBuyGroupTicket" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AvgBuyTicketByManual" class="control-label"></label>
+                <input asp-for="AvgBuyTicketByManual" class="form-control" />
+                <span asp-validation-for="AvgBuyTicketByManual" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Remark" class="control-label"></label>
+                <input asp-for="Remark" class="form-control" />
+                <span asp-validation-for="Remark" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

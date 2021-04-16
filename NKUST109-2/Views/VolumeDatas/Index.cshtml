@@ -1,0 +1,61 @@
+﻿@model IEnumerable<KHLightTrail.VolumeData>
+
+@{
+    ViewData["Title"] = "Volume Data";
+}
+
+<h1>Volume Data</h1>
+
+<li>
+    <a asp-action="Create">Create</a>
+</li>
+<li>
+    <a asp-action="ImportFromOfficial">Import volume datas from official data source</a>
+</li>
+<li>
+    <a asp-action="DeleteAll">DELETE ALL DATAS</a>
+</li>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Year)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Month)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalVolume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AverangeDailyVolume)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Year)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Month)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalVolume)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AverangeDailyVolume)
+                </td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
