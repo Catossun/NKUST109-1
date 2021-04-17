@@ -166,8 +166,8 @@ namespace NKUST109_2.Controllers
             newVolumeDatas.ForEach(data =>
             {
                 _context.VolumeDatas.Add(data);
+                _context.SaveChanges();
             });
-            _context.SaveChanges();
             return RedirectToAction(nameof(Index));
         }
 
