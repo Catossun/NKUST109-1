@@ -20,9 +20,18 @@ namespace NKUST109_2.Controllers
         }
 
         // GET: VolumeDatas
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? year)
         {
-            return View(await _context.VolumeDatas.ToListAsync());
+            List<VolumeData> volumeDatas;
+            if (year == null)
+            {
+                volumeDatas = await _context.VolumeDatas.ToListAsync();
+            }
+            else
+            {
+                volumeDatas = _context.VolumeDatas.Where(volumeData => volumeData.Year == year).ToList();
+            }
+            return View(volumeDatas);
         }
 
         // GET: VolumeDatas/Details/5
