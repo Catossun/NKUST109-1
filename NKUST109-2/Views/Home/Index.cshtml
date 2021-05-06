@@ -1,5 +1,38 @@
 ﻿@{ViewData["Title"] = "Home";}
 
 <div class="text-center">
-    <h1>hello, world</h1>
+    <h1>高雄輕軌月均運量統計</h1>
+</div>
+
+<div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
+    <div class="feature col">
+        <h2>REST API 使用說明</h2>
+        <p>
+            URL 格式：/api/VolumeDatasApi/{year}/{month}<br />
+            回傳格式：JSON
+        </p>
+        <p>
+            參數說明：<br />
+            year：可選，使用年份篩選資料。<br />
+            month：可選，使用月份篩選資料，必須與年份篩選一起使用。
+        </p>
+        <p>
+            範例：<br />
+            取得 107 年 10 月之資料<br />
+            /api/VolumeDatasApi/107/10
+        </p>
+    </div>
+    <div class="feature col">
+        <h2>資料來源</h2>
+        <p></p>
+        <a href="https://data.kcg.gov.tw/dataset/6f29f6f4-2549-4473-aa90-bf60d10895dc/resource/30dfc2cf-17b5-4a40-8bb7-c511ea166bd3" class="icon-link">
+            高雄市政府資料開放網
+        </a>
+    </div>
+    <div class="feature col">
+        <h2>網站原始碼</h2>
+        <a href="https://github.com/Catossun/NKUST109-2" class="icon-link">
+            GitHub
+        </a>
+    </div>
 </div>
