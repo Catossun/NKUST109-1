@@ -7,8 +7,8 @@ Datasource: [高雄輕軌月均運量統計](https://data.kcg.gov.tw/dataset/6f2
 
 ## Webside Screenshot
 - Home
-![](image/home.jpeg)
+![](https://github.com/Catossun/NKUST109-2/blob/master/Image/home.jpeg)
 - Volume Data List
-![](image/vd_list.jpeg)
+![](https://github.com/Catossun/NKUST109-2/blob/master/Image/vd_list.jpeg)
 - Volume Data Detail
-![](image/vd_detail.jpeg)
+![](https://github.com/Catossun/NKUST109-2/blob/master/Image/vd_detail.jpeg)
