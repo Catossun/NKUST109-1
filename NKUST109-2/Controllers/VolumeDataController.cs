@@ -10,11 +10,11 @@ using NKUST109_2.Data;
 
 namespace NKUST109_2.Controllers
 {
-    public class VolumeDatasController : Controller
+    public class VolumeDataController : Controller
     {
         private readonly ApplicationDbContext _context;
 
-        public VolumeDatasController(ApplicationDbContext context)
+        public VolumeDataController(ApplicationDbContext context)
         {
             _context = context;
         }

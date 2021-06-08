@@ -12,11 +12,11 @@ namespace NKUST109_2.Controllers.RESTApi
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class VolumeDatasApiController : ControllerBase
+    public class VolumeDataApiController : ControllerBase
     {
         private readonly ApplicationDbContext dbContext;
 
-        public VolumeDatasApiController(ApplicationDbContext dbContext)
+        public VolumeDataApiController(ApplicationDbContext dbContext)
         {
             this.dbContext = dbContext;
         }
