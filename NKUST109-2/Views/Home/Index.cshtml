@@ -1,40 +1,63 @@
 ﻿@{ViewData["Title"] = "Home";}
 
-<div class="text-center">
-    <h1>高雄輕軌月均運量統計</h1>
+<div class="container">
+    <div class="row">
+        <div class="col text-center align-self-center py-2" style="min-height:200px">
+            <h1>NKUST109-2</h1>
+            <p>
+                本網站提供多項服務<br />
+                向下捲動以查看所有服務
+            </p>
+        </div>
+        <img src="~/img/loading_hyper.gif" class="col" />
+    </div>
 </div>
 
-<div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-    <div class="feature col">
-        <h2>REST API 使用說明</h2>
-        <p>
-            URL 格式：/api/VolumeDataApi/{year}/{month}<br />
-            回傳格式：JSON
-        </p>
-        <p>
-            參數說明：<br />
-            year：可選，使用年份篩選資料。<br />
-            month：可選，使用月份篩選資料，必須與年份篩選一起使用。
-        </p>
-        <p>
-            範例：<br />
-            取得 107 年度資料<br />
-            /api/VolumeDataApi/107<br />
-            取得 108 年 10 月之資料<br />
-            /api/VolumeDataApi/108/10
-        </p>
+<hr class="m-5" />
+
+<div class="container">
+    <div class="text-center">
+        <h2>
+            高雄輕軌月均運量統計
+        </h2>
     </div>
-    <div class="feature col">
-        <h2>資料來源</h2>
-        <p></p>
-        <a href="https://data.kcg.gov.tw/dataset/6f29f6f4-2549-4473-aa90-bf60d10895dc/resource/30dfc2cf-17b5-4a40-8bb7-c511ea166bd3" class="icon-link">
-            高雄市政府資料開放網
-        </a>
-    </div>
-    <div class="feature col">
-        <h2>網站原始碼</h2>
-        <a href="https://github.com/Catossun/NKUST109-2" class="icon-link">
-            GitHub
-        </a>
+
+    <div class="row py-3">
+        <div class="col-md mb-3">
+            <div class="card">
+                <h5 class="card-header">REST API 使用說明</h5>
+                <div class="card-body">
+                    <p>
+                        URL 格式：/api/VolumeDataApi/{year}/{month}<br />
+                        回傳格式：JSON
+                    </p>
+                    <p>
+                        參數說明：<br />
+                        year：可選，使用年份篩選資料。<br />
+                        month：可選，使用月份篩選資料，必須與年份篩選一起使用。
+                    </p>
+                    <p>
+                        範例：<br />
+                        取得 107 年度資料<br />
+                        /api/VolumeDataApi/107<br />
+                        取得 108 年 10 月之資料<br />
+                        /api/VolumeDataApi/108/10
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md mb-3">
+            <div class="card">
+                <h5 class="card-header">資料來源</h5>
+                <div class="card-body">
+                    <a href="https://data.kcg.gov.tw/dataset/6f29f6f4-2549-4473-aa90-bf60d10895dc/resource/30dfc2cf-17b5-4a40-8bb7-c511ea166bd3" target="_blank" class="icon-link">
+                        高雄市政府資料開放網
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+
+<hr />

@@ -1,40 +1,39 @@
 ﻿@model IEnumerable<KHLightTrail.VolumeData>
 
 @{
-    ViewData["Title"] = "Volume Data";
+    ViewData["Title"] = "高雄輕軌月均運量統計資料";
 }
 
-<h1>Volume Data</h1>
+<h1 class="text-center py-3">@ViewData["Title"]</h1>
 
-<li>
-    <a asp-action="Create">Create</a>
-</li>
-<li>
-    <a asp-action="ImportFromOfficial">Import volume data from official data source</a>
-</li>
-<li>
-    <a asp-action="DeleteAll">DELETE ALL DATA</a>
-</li>
+<div class="d-md-flex text-center text-md-left">
+    <div class="flex-md-grow-1">
+        <a class="btn btn-primary me-1 m-1" asp-action="Create">新增資料</a>
+        <a class="btn btn-primary  m-1" asp-action="ImportFromOfficial">從政府公開資料匯入</a>
+    </div>
+    <a class="btn btn-danger m-1" asp-action="DeleteAll">刪除所有資料（按下即刪除！）</a>
+</div>
 
-<form asp-action="Index" method="get" style="margin:16px">
-    篩選年份：<input type="number" name="year" />
-    <input type="submit" value="搜尋" />
+<form asp-action="Index" method="get" class="text-center text-md-left m-3">
+    <span>篩選年份</span>
+    <input type="number" name="year" value="@ViewData["year"]" />
+    <input type="submit" value="搜尋" class="btn btn-primary" />
 </form>
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Year)
+                年
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Month)
+                月
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TotalVolume)
+                總運量
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.AverangeDailyVolume)
+                每日平均運量
             </th>
             <th></th>
         </tr>
@@ -56,9 +55,9 @@
                     @Html.DisplayFor(modelItem => item.AverangeDailyVolume)
                 </td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-secondary">檢視</a>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-secondary">編輯</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-secondary">刪除</a>
                 </td>
             </tr>
         }

@@ -1,13 +1,13 @@
 ﻿@model KHLightTrail.VolumeData
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = $"檢視資料 {Model.Year}/{Model.Month}";
 }
 
-<h1>Details</h1>
+<h1>@ViewData["Title"]</h1>
 
 <div>
-    <h4>VolumeData</h4>
+    <h4 class="py-3">當月運量統計</h4>
     <hr />
     <dl class="row">
         <dt class="col-sm-6">
@@ -85,5 +85,5 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">返回列表</a>
 </div>

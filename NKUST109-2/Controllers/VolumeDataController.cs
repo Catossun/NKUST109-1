@@ -29,6 +29,7 @@ namespace NKUST109_2.Controllers
             }
             else
             {
+                ViewData["year"] = year;
                 volumeDatas = _context.VolumeDatas.Where(volumeData => volumeData.Year == year).ToList();
             }
             return View(volumeDatas);

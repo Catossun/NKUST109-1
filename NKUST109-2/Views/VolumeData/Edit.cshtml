@@ -1,12 +1,12 @@
 ﻿@model KHLightTrail.VolumeData
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = $"編輯資料 {Model.Year}/{Model.Month}";
 }
 
-<h1>Edit</h1>
+<h1>@ViewData["Title"]</h1>
 
-<h4>VolumeData</h4>
+<h4>當月運量統計</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -74,14 +74,14 @@
                 <span asp-validation-for="Remark" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="儲存" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">取消</a>
 </div>
 
 @section Scripts {
