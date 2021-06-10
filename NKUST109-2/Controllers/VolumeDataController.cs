@@ -161,7 +161,6 @@ namespace NKUST109_2.Controllers
 
         public async Task<IActionResult> ImportFromOfficial()
         {
-            DeleteAllDataWithoutSaving();
             List<VolumeData> newVolumeDatas = await VolumeDataset.GetAllVolumes();
             newVolumeDatas.ForEach(data =>
             {
