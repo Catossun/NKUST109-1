@@ -28,7 +28,10 @@
 
         function sendMsgOnClick() {
             let inputMessage = $("#send-msg-content")
-            sendMsg(inputMessage.val())
+            let message = inputMessage.val().trim()
+            if (message != "") {
+                sendMsg(message)
+            }
             inputMessage.val("")
         }
 
@@ -44,11 +47,12 @@
                 console.log(resp)
                 let latestMsgIndex = 0
                 for (let msg of resp) {
+                    latestMsgIndex = msg.id
                     let timestamps = msg.timestamp.split("T")
                     let date = timestamps[0]
                     let time = timestamps[1].split(".")[0]
+                    if (msg.content == null) continue;
                     addMessage(msg.author, msg.content, `${date} ${time}`)
-                    latestMsgIndex = msg.id
                 }
                 fetchMsg(latestMsgIndex + 1, lpSec)
             }).fail(resp => {
