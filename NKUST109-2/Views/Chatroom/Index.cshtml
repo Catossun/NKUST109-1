@@ -99,11 +99,16 @@ ${author}
         }
 
         function addMsgBlock(msgBlock) {
-            let container = $("#msg-block-container")
+            let container =$("#msg-block-container")
             container.append(msgBlock)
             if (isAutoScroll) {
-                container.scrollTop(container.height())
+                scrollToBottom("msg-block-container")
             }
+        }
+
+        function scrollToBottom(id) {
+            let element = document.getElementById(id)
+            element.scrollTop = element.scrollHeight
         }
 
         function autoResize() {
