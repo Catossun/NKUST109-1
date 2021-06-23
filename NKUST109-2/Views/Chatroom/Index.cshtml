@@ -10,7 +10,7 @@
     <div class="send-wrap mt-4 border-top row">
         <textarea id="send-msg-content" class="form-control send-message col-lg-9" rows="2" placeholder="輸入文字..."></textarea>
         <div class="col-lg-3">
-            <button onclick="sendMsgOnClick()" class="btn btn-primary w-100 mt-1">送出</button>
+            <button id="send-btn" onclick="sendMsgOnClick()" class="btn btn-primary w-100 mt-1">送出</button>
             <input id="auto-scroll-switch" type="checkbox" onchange="switchAutoScroll()" class="custom-checkbox" checked />
             <small class="text-white">
                 自動捲至最底
@@ -114,6 +114,17 @@ ${author}
             isAutoScroll = isChecked
         }
 
+        function bindEnterToSendBtn() {
+            let input = document.getElementById("send-msg-content")
+            input.addEventListener("keyup", function (event) {
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                    document.getElementById("send-btn").click();
+                }
+            });
+        }
+
+        bindEnterToSendBtn()
         window.onresize = autoResize
         autoResize()
         fetchMsg(-1, 60)
