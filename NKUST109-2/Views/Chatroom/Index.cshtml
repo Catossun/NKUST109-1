@@ -1,0 +1,118 @@
+﻿<div class="message-box ml-md-5 mr-md-5 p-1">
+    <div id="msg-block-container" class="msg-wrap">
+        <div class="media msg d-flex">
+            <div class="m-auto">
+                <small>歡迎加入聊天室，趕快來一起聊天吧！</small>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <div class="send-wrap mt-4 border-top row">
+        <textarea id="send-msg-content" class="form-control send-message col-lg-9" rows="2" placeholder="輸入文字..."></textarea>
+        <div class="col-lg-3">
+            <button onclick="sendMsgOnClick()" class="btn btn-primary w-100 mt-1">送出</button>
+            <input id="auto-scroll-switch" type="checkbox" onchange="switchAutoScroll()" class="custom-checkbox" checked />
+            <small class="text-white">
+                自動捲至最底
+            </small>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script>
+        let rootPath = "@(Context.Request.PathBase + Context.Request.Path)"
+        let isAutoScroll = true
+        let currentUser = "@(User.Identity.Name.Split("@")[0])"
+        let failedFetchMsgCount = 0
+
+        function sendMsgOnClick() {
+            let inputMessage = $("#send-msg-content")
+            sendMsg(inputMessage.val())
+            inputMessage.val("")
+        }
+
+        function sendMsg(message) {
+            $.post(`${rootPath}/SendMessage`, { msg: message }).done(resp => {
+                console.log(resp)
+            })
+        }
+
+        function fetchMsg(index, lpSec) {
+            $.post(`${rootPath}/FetchMessage`, { fromIndex: index, longPollSec: lpSec }).done(resp => {
+                failedFetchMsgCount = 0
+                console.log(resp)
+                let latestMsgIndex = 0
+                for (let msg of resp) {
+                    let timestamps = msg.timestamp.split("T")
+                    let date = timestamps[0]
+                    let time = timestamps[1].split(".")[0]
+                    addMessage(msg.author, msg.content, `${date} ${time}`)
+                    latestMsgIndex = msg.id
+                }
+                fetchMsg(latestMsgIndex + 1, lpSec)
+            }).fail(resp => {
+                console.log("Failed to fetch message!")
+                if (++failedFetchMsgCount <= 10) {
+                    fetchMsg(index, lpSec)
+                } else {
+                    addMessage("無法與伺服器連線，請重新整理網頁", "", "")
+                }
+            })
+        }
+
+        function addMessage(author, content, timestamp) {
+            let msgBlock = generateMsgBlock(author, content, timestamp)
+            addMsgBlock(msgBlock)
+        }
+
+        function generateMsgBlock(author, content, timestamp) {
+            let msg = content.replaceAll("\n", "<br>").trim()
+            let msgBlock = `<div class="media msg d-flex">`
+            if (author == currentUser) {
+                msgBlock += `
+<div class="ml-auto">
+<h5 class="media-heading ml-auto">
+`
+            } else {
+                msgBlock += `<div><h5 class="media-heading"> `
+            }
+            msgBlock +=`
+${author}
+<small class="pull-right time text-white-50">
+<i class="far fa-clock"></i> ${timestamp}
+</small>
+</h5>
+<small>${msg}</small>
+</div>
+</div>
+<hr />
+`
+            return msgBlock
+        }
+
+        function addMsgBlock(msgBlock) {
+            let container = $("#msg-block-container")
+            container.append(msgBlock)
+            if (isAutoScroll) {
+                container.scrollTop(container.height())
+            }
+        }
+
+        function autoResize() {
+            let windowHeight = window.innerHeight
+            let messageBoxHeight = windowHeight - 315
+            $(".msg-wrap").css("height", messageBoxHeight + "px")
+        }
+
+        function switchAutoScroll() {
+            let autoScrollSwitch = $("#auto-scroll-switch")
+            let isChecked = autoScrollSwitch.prop("checked")
+            isAutoScroll = isChecked
+        }
+
+        window.onresize = autoResize
+        autoResize()
+        fetchMsg(-1, 60)
+    </script>
+}
