@@ -57,7 +57,7 @@
                 fetchMsg(latestMsgIndex + 1, lpSec)
             }).fail(resp => {
                 console.log("Failed to fetch message!")
-                if (resp.status != 408) {
+                if (resp.status != 408 || resp.status != 504) {
                     ++failedFetchMsgCount;
                 }
                 if (failedFetchMsgCount <= 10) {
