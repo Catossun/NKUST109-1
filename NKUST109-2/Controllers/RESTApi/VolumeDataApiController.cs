@@ -25,7 +25,7 @@ namespace NKUST109_2.Controllers.RESTApi
         [Route("{year?}/{month?}")]
         public Task<List<VolumeData>> GetVolumeDatas(int? year, int? month)
         {
-            IQueryable<VolumeData> query = dbContext.VolumeDatas.AsQueryable();
+            IQueryable<VolumeData> query = dbContext.VolumeData.AsQueryable();
             if (year != null)
             {
                 query = query.Where(vd => vd.Year == year);

@@ -22,17 +22,17 @@ namespace NKUST109_2.Controllers
         // GET: VolumeDatas
         public async Task<IActionResult> Index(int? year)
         {
-            List<VolumeData> volumeDatas;
+            List<VolumeData> volumeData;
             if (year == null)
             {
-                volumeDatas = await _context.VolumeDatas.ToListAsync();
+                volumeData = await _context.VolumeData.ToListAsync();
             }
             else
             {
                 ViewData["year"] = year;
-                volumeDatas = _context.VolumeDatas.Where(volumeData => volumeData.Year == year).ToList();
+                volumeData = _context.VolumeData.Where(volumeData => volumeData.Year == year).ToList();
             }
-            return View(volumeDatas);
+            return View(volumeData);
         }
 
         // GET: VolumeDatas/Details/5
@@ -43,7 +43,7 @@ namespace NKUST109_2.Controllers
                 return NotFound();
             }
 
-            var volumeData = await _context.VolumeDatas
+            var volumeData = await _context.VolumeData
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (volumeData == null)
             {
@@ -83,7 +83,7 @@ namespace NKUST109_2.Controllers
                 return NotFound();
             }
 
-            var volumeData = await _context.VolumeDatas.FindAsync(id);
+            var volumeData = await _context.VolumeData.FindAsync(id);
             if (volumeData == null)
             {
                 return NotFound();
@@ -134,7 +134,7 @@ namespace NKUST109_2.Controllers
                 return NotFound();
             }
 
-            var volumeData = await _context.VolumeDatas
+            var volumeData = await _context.VolumeData
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (volumeData == null)
             {
@@ -149,15 +149,15 @@ namespace NKUST109_2.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var volumeData = await _context.VolumeDatas.FindAsync(id);
-            _context.VolumeDatas.Remove(volumeData);
+            var volumeData = await _context.VolumeData.FindAsync(id);
+            _context.VolumeData.Remove(volumeData);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool VolumeDataExists(int id)
         {
-            return _context.VolumeDatas.Any(e => e.Id == id);
+            return _context.VolumeData.Any(e => e.Id == id);
         }
 
         public async Task<IActionResult> ImportFromOfficial()
@@ -165,7 +165,7 @@ namespace NKUST109_2.Controllers
             List<VolumeData> newVolumeDatas = await VolumeDataset.GetAllVolumes();
             newVolumeDatas.ForEach(data =>
             {
-                _context.VolumeDatas.Add(data);
+                _context.VolumeData.Add(data);
                 _context.SaveChanges();
             });
             return RedirectToAction(nameof(Index));
@@ -180,10 +180,10 @@ namespace NKUST109_2.Controllers
 
         private void DeleteAllDataWithoutSaving()
         {
-            DbSet<VolumeData> volumeDatas = _context.VolumeDatas;
-            foreach (VolumeData volumeData in volumeDatas)
+            DbSet<VolumeData> volumeData = _context.VolumeData;
+            foreach (VolumeData data in volumeData)
             {
-                volumeDatas.Remove(volumeData);
+                volumeData.Remove(data);
             }
         }
     }
