@@ -53,7 +53,10 @@
                 fetchMsg(latestMsgIndex + 1, lpSec)
             }).fail(resp => {
                 console.log("Failed to fetch message!")
-                if (++failedFetchMsgCount <= 10) {
+                if (resp.status != 408) {
+                    ++failedFetchMsgCount;
+                }
+                if (failedFetchMsgCount <= 10) {
                     fetchMsg(index, lpSec)
                 } else {
                     addMessage("無法與伺服器連線，請重新整理網頁", "", "")
